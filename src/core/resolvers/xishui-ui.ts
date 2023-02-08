@@ -60,8 +60,8 @@ function getSideEffectsLegacy(
 
   if (importStyle === 'sass') {
     return [
-      'xishui-ui/packages/theme-chalk/src/base.scss',
-      `xishui-ui/packages/theme-chalk/src/${partialName}.scss`,
+      'xishui-ui/theme-chalk/src/base.scss',
+      `xishui-ui/theme-chalk/src/${partialName}.scss`,
     ]
   }
   else if (importStyle === true || importStyle === 'css') {
@@ -75,7 +75,7 @@ function getSideEffectsLegacy(
 function getSideEffects(dirName: string, options: XishuiUiResolverOptionsResolved): SideEffectsInfo | undefined {
   const { importStyle, ssr } = options
   const themeFolder = 'xishui-ui/theme-chalk'
-  const esComponentsFolder = 'xishui-ui/es/packages/components'
+  const esComponentsFolder = 'xishui-ui/es/components'
 
   if (importStyle === 'sass')
     return ssr ? `${themeFolder}/src/${dirName}.scss` : `${esComponentsFolder}/${dirName}/style/index`
@@ -107,9 +107,7 @@ function resolveDirective(name: string, options: XishuiUiResolverOptionsResolved
   if (!options.directives)
     return
 
-  const directives: Record<string, { importName: string; styleName: string }> = {
-   
-  }
+  const directives: Record<string, { importName: string; styleName: string }> = {}
 
   const directive = directives[name]
   if (!directive)
@@ -169,6 +167,6 @@ export function XishuiUiResolver(
           return resolveComponent(name, { ...options, importStyle: false })
         else return resolveComponent(name, options)
       },
-    }
+    },
   ]
 }
